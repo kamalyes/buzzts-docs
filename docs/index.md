@@ -6,7 +6,7 @@ hero:
   text: 常用的工具函数
   tagline: 共300个工具函数，帮助提高开发效率
   image:
-    src: /logo.png
+    src: /buzzts.svg
     alt: "buzzts"
   actions:
     - theme: brand buzzts-start
