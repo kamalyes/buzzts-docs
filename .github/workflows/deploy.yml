@@ -1,0 +1,41 @@
+name: Deployment 🚀 # 工作流名称，显示在 GitHub Actions 页面
+
+on:
+  push:
+    branches: [master]  # 🛠️ 只有 master 分支有 push 时才触发工作流
+    paths-ignore:       # 🚫 下列文件变更不会触发部署
+      - README.md       # 📄 修改 README.md 不触发部署
+
+jobs:
+  deploy:
+    name: Build and Deploy to GitHub Pages 📦➡️🌐 # 任务名称，运行时显示
+    runs-on: ubuntu-latest                   # 🐧 运行环境，使用最新的 Ubuntu 镜像
+
+    steps:
+      # 第一步：检出代码 📥
+      - name: Checkout
+        uses: actions/checkout@v2            # ✅ 官方代码检出 action，拉取代码到 runner
+
+      # 第二步：设置 Node.js 环境 ⚙️
+      - name: Setup Node.js
+        uses: actions/setup-node@v3          # 🔧 设置 Node.js 版本
+        with:
+          node-version: "18.x"                # 📌 使用 Node 18 版本
+
+      # 第三步：安装依赖 📦
+      - name: Install dependencies
+        run: yarn install                    # 📥 安装项目依赖
+
+      # 第四步：构建项目 🏗️
+      - name: Build
+        run: yarn build                      # 🔨 执行构建命令，生成发布文件
+
+      # 第五步：部署到 GitHub Pages 🌐
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2.2.0
+        with:
+          repo: kamalyes/buzzts-docs         # 📂 仓库名
+          target_branch: master              # 🎯 发布到 master 分支
+          build_dir: docs/.vitepress/dist    # 📁 构建产物目录
+        env:
+          GH_PAT: ${{ secrets.ACCESS_TOKEN }} # 🔑 访问令牌，放在 secrets 里保护安全

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import { randUniqueSample, rangeWithStep } from "buzzts";
 
 // 先用 rangeWithStep 生成数字数组，再转成字符串初始化arrayText
@@ -133,9 +133,11 @@ const batchSummary = computed(() => {
 });
 
 // 分页页码改变时滚动到顶部
-watch(currentPage, () => {
-  const container = document.querySelector("#results-container");
-  if (container) container.scrollTop = 0;
+onMounted(() => {
+  watch(currentPage, () => {
+    const container = document.querySelector("#results-container");
+    if (container) container.scrollTop = 0;
+  });
 });
 
 function onPageSizeChange(val: number) {
