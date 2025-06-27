@@ -25,17 +25,6 @@ export default defineConfig({
   base: "/",
   head: [
     [
-      "script",
-      {},
-      `var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?6a7dac00248d3b6ad8479d7249bb29c5";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();`
-    ],
-    [
       "meta",
       {
         name: "viewport",
@@ -70,10 +59,6 @@ export default defineConfig({
       dark: "min-dark",
       light: "min-light"
     }
-    // anchor: {
-    //   slugify: str => encodeURIComponent(str),
-    //   level: [1, 2, 3, 4, 5, 6]
-    // }
   },
   title: "buzzts",
   themeConfig: {
