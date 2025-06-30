@@ -1,6 +1,6 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(12)
+useAddNumInOutlineLabel(14)
 
 import arrayAllExist from "./arrayAllExist.vue"
 import arrayAllExistDeep from "./arrayAllExistDeep.vue"
@@ -16,6 +16,8 @@ import mergeObject from "./mergeObject.vue"
 import intToLowerChinese from "./intToLowerChinese.vue"
 import upperMoney from "./upperMoney.vue"
 import sumAverage from "./sumAverage.vue"
+import chunkArray from "./chunkArray.vue"
+import getPercentage from "./getPercentage.vue"
 
 </script>
 
@@ -478,5 +480,78 @@ import sumAverage from "./sumAverage.vue"
 #### <divider-desc /> {#desc-getDistance}
 
 - 使用欧几里得距离公式计算二维空间两点距离
+
+</div>
+
+### chunkArray
+
+将数组分成指定数量的块（尽量平均分配）
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-chunkArray}
+
+<chunkArray />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/mathx/chunkArray.vue
+
+</details>
+
+#### <divider-param /> {#param-chunkArray}
+
+| 参数属性   | 说明                     | 类型     | 默认值 |
+|------------|--------------------------|----------|--------|
+| data       | 要分块的数组             | `T[]`    | 无     |
+| chunkCount | 分块数量，正整数且不超过数组长度 | `number` | 无     |
+
+| 返回值     | 说明                   |
+|------------|------------------------|
+| `T[][]`    | 分块后的二维数组       |
+
+#### <divider-desc /> {#desc-chunkArray}
+
+- 将数组分成指定数量的块，尽量平均分配元素
+- 如果分块数大于数组长度，每个元素单独成块
+- 参数校验失败时会抛错
+
+</div>
+
+### getPercentage
+
+计算百分比
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-getPercentage}
+
+<getPercentage />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/mathx/getPercentage.vue
+
+</details>
+
+#### <divider-param /> {#param-getPercentage}
+
+| 参数属性     | 说明             | 类型     | 默认值 |
+|--------------|------------------|----------|--------|
+| part         | 当前值           | `number` | 无     |
+| total        | 总值             | `number` | 无     |
+| decimalPlaces | 保留小数位数，默认2位 | `number` | `2`    |
+
+| 返回值       | 说明                   |
+|--------------|------------------------|
+| `string`     | 百分比字符串，如 "50.00%" |
+
+#### <divider-desc /> {#desc-getPercentage}
+
+- 计算百分比，返回格式化字符串，默认保留两位小数
+- 总值为0时返回0%
+- 参数非数字时抛异常
 
 </div>

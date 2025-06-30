@@ -1,6 +1,6 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(9)
+useAddNumInOutlineLabel(11)
 
 import capitalizeFirstLetter from "./capitalizeFirstLetter.vue"
 import camelToSnake from "./camelToSnake.vue"
@@ -11,6 +11,8 @@ import maskPhoneNumber from "./maskPhoneNumber.vue"
 import truncateText from "./truncateText.vue"
 import escapeHtml from "./escapeHtml.vue"
 import unescapeHtml from "./unescapeHtml.vue"
+import chunkString from "./chunkString.vue"
+import strReplace from "./strReplace.vue"
 
 </script>
 
@@ -341,5 +343,81 @@ HTML实体反转义
 
 - 将 HTML 实体编码转换回对应字符
 - 反转义常见实体，恢复原始字符串
+
+</div>
+
+### strReplace
+
+将字符串中指定区间的字符替换为指定字符串（支持多字符替换、删除、负数索引）
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-strReplace}
+
+<strReplace />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/string/strReplace.vue
+
+</details>
+
+#### <divider-param /> {#param-strReplace}
+
+| 参数属性    | 说明                                         | 类型     | 默认值 |
+|-------------|----------------------------------------------|----------|--------|
+| str         | 原始字符串，必须是字符串类型                   | string   | 无     |
+| start       | 开始替换位置，支持负数索引（负数表示从末尾计数）| number   | 无     |
+| end         | 结束替换位置，支持负数索引，包含该位置           | number   | 无     |
+| replacement | 替换字符串，必传，可多字符，空字符串表示删除     | string   | 无     |
+
+| 返回值     | 说明             |
+|------------|------------------|
+| `string`   | 替换后的新字符串   |
+
+#### <divider-desc /> {#desc-strReplace}
+
+- 替换区间包含结束索引
+- 支持负数索引
+- 替换字符串可为空表示删除
+
+</div>
+
+---
+
+### chunkString
+
+将输入字符串按照指定的块大小分割成多个子字符串。
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-chunkString}
+
+<chunkString />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/string/chunkString.vue
+
+</details>
+
+#### <divider-param /> {#param-chunkString}
+
+| 参数属性  | 说明               | 类型   | 默认值 |
+|-----------|--------------------|--------|--------|
+| str       | 要分割的字符串       | string | 无     |
+| chunkSize | 每个子字符串长度，必须大于0 | number | 无     |
+
+| 返回值     | 说明             |
+|------------|------------------|
+| `string[]` | 分割后的字符串数组 |
+
+#### <divider-desc /> {#desc-chunkString}
+
+- 当参数类型错误会抛出异常
+- chunkSize 必须为正整数
+- 支持最后一块长度小于 chunkSize
 
 </div>

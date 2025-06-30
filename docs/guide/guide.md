@@ -37,12 +37,10 @@ npm install buzzts
 ::: code-group
 
 ```html [jsdelivr]
-<!-- 提供包含所有方法的全局变量 PureUtils -->
 <script src="//cdn.jsdelivr.net/npm/buzzts"></script>
 ```
 
 ```html [unpkg]
-<!-- 提供包含所有方法的全局变量 PureUtils -->
 <script src="//unpkg.com/buzzts"></script>
 ```
 
