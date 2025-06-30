@@ -103,6 +103,7 @@ async function runPerformanceTest(iterations = 10000) {
         for (let i = 0; i < batchSize && (batch * batchSize + i) < iterations; i++) {
           const num = randFloat(min, max, precision.value);
           const key = num.toFixed(precision.value);
+          floatResult.value = num;
           tempStats[key] = (tempStats[key] || 0) + 1;
         }
         resolve();

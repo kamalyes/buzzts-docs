@@ -27,7 +27,10 @@ function generateMaskedPhone() {
 
 const resultText = computed(() => {
   if (!result.value) return "请输入手机号后点击加密";
-  return `maskPhoneNumber() = ${result.value}`;
+  return `maskPhoneNumber(${phoneNumber.value}, {
+    maskChar: ${maskChar.value},
+    maskLength: ${maskLength.value}
+  }) = ${result.value}`;
 });
 </script>
 
@@ -41,6 +44,7 @@ const resultText = computed(() => {
         maxlength="11"
         clearable
       />
+      <n-text>手机号</n-text>
 
       <n-input
         v-model:value="maskChar"
@@ -48,6 +52,7 @@ const resultText = computed(() => {
         maxlength="1"
         placeholder="默认 *"
       />
+      <n-text>替换字符</n-text>
 
       <n-input-number
         v-model:value="maskLength"
@@ -55,6 +60,7 @@ const resultText = computed(() => {
         :min="1"
         :max="11"
       />
+      <n-text>替换长度</n-text>
 
       <n-button type="primary" @click="generateMaskedPhone">加密</n-button>
 

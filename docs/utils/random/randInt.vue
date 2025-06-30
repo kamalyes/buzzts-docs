@@ -111,6 +111,7 @@ async function runPerformanceTest(iterations = 10000) {
       setTimeout(() => {
         for (let i = 0; i < batchSize && (batch * batchSize + i) < iterations; i++) {
           const num = randInt(min, max);
+          intResult.value = num;
           tempStats[num] = (tempStats[num] || 0) + 1;
         }
         resolve();

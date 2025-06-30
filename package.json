@@ -26,7 +26,7 @@
       "url": "https://github.com/kamalyes"
   },
   "devDependencies": {
-      "buzzts": "^0.0.5",
+      "buzzts": "^0.0.6",
       "@esmjs/geo": "^1.0.0",
       "@faker-js/faker": "^8.4.1",
       "@vicons/ionicons5": "^0.12.0",
