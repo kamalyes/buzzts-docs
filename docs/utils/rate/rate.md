@@ -1,6 +1,6 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(4)
+useAddNumInOutlineLabel(2)
 
 import sleep from "./sleep.vue"
 import timeoutPromise from "./timeoutPromise.vue"

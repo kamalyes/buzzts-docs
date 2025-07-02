@@ -1,6 +1,6 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(20)
+useAddNumInOutlineLabel(6)
 import fullscreen from "./fullscreen.vue"
 import scroller from "./scroller.vue"
 import tagOpener from "./tagOpener.vue"
@@ -36,18 +36,28 @@ import viewport from "./viewport.vue"
 | 参数属性 | 说明                                 | 类型        | 默认值        |
 | -------- | ------------------------------------ | ----------- | ------------- |
 | element  | 需要进入全屏的元素，默认是 body 元素 | HTMLElement | document.body |
+| enableDblClickExit | 是否启用双击退出全屏功能             | boolean     | true          |
+| fakeFullscreenBackgroundColor | 伪全屏时元素的背景颜色    | string     | 默认透明    |
 
 | 返回值  | 说明                                                        |
 | ------- | ----------------------------------------------------------- |
 | enter() | 返回一个 Promise，成功时 resolve，失败时 reject（不支持时） |
-| exit()  | 退出全屏，无返回值                                          |
+| exit()  | 返回一个 Promise，成功时 resolve，失败时 reject             |
+| toggle()| 返回一个 Promise，切换全屏状态                              |
+| isFullscreen() | 返回 boolean，判断是否处于绑定元素的全屏状态          |
+| destroy() | 无返回值，销毁实例，移除事件监听                           |
 
 #### <divider-desc /> {#desc-Fullscreen}
 
-- 兼容多浏览器的全屏 API 封装
-- 支持指定元素进入全屏，默认是 body 元素
-- enter() 返回 Promise，方便链式调用和错误捕获
-- exit() 立即退出全屏
+- 兼容多浏览器的全屏 API 封装  
+- 支持指定元素进入全屏，默认是 body 元素  
+- 针对 iOS 视频元素调用 `webkitEnterFullscreen`  
+- 不支持全屏 API 时自动启用伪全屏方案（修改样式模拟全屏）  
+- `enter()` 返回 Promise，方便链式调用和错误捕获  
+- `exit()` 立即退出全屏，返回 Promise  
+- 支持监听全屏状态变化，注册和注销回调  
+- 支持双击绑定元素退出全屏（默认启用，可关闭）  
+- 提供销毁方法，移除所有事件监听，避免内存泄漏  
 
 </div>
 

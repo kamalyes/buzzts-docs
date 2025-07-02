@@ -2,49 +2,68 @@
 // 引入 Vue 的响应式和生命周期函数
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 // 引入 buzzts 的 Fullscreen 类，用于全屏控制
-import { Fullscreen } from 'buzzts';
+import { Fullscreen, randColorRGB } from 'buzzts';
 
 // 绑定内容区域 DOM 元素的引用
 const contentRef = ref<HTMLElement | null>(null);
+const videoRef = ref<HTMLVideoElement | null>(null);
+const otherRef = ref<HTMLElement | null>(null);
 
-// 声明两个 Fullscreen 实例变量，分别管理内容区域和整体页面全屏
-let contentFullscreen: Fullscreen | null = null;
-let pageFullscreen: Fullscreen | null = null;
+// 声明Fullscreen 实例变量
+const contentFullscreen = ref<Fullscreen | null>(null);
+const pageFullscreen = ref<Fullscreen | null>(null);
+const videoFullscreen = ref<Fullscreen | null>(null);
+const otherFullscreen = ref<Fullscreen | null>(null);
 
 // 响应式变量，表示内容区域和整体页面是否处于全屏状态
 const isContentFullscreen = ref(false);
 const isPageFullscreen = ref(false);
+const isVideoFullscreen = ref(false);
+const isOtherFullscreen = ref(false);
 
 // 加载状态，防止多次点击导致重复请求
 const isLoadingContent = ref(false);
 const isLoadingPage = ref(false);
+const isLoadingVideo = ref(false);
+const isLoadingOther = ref(false);
+
+// 生成随机 rgba 颜色，透明度0.8
+function getRandomColor(): string {
+  return randColorRGB([100, 200], [50, 150], [0, 100])
+}
+
 
 /**
- * 初始化两个 Fullscreen 实例
- * 绑定对应的 DOM 元素，并监听全屏状态变化以同步响应式状态
+ * 通用初始化 Fullscreen 实例函数
+ * @param elementRef - 绑定的 DOM 引用
+ * @param fullscreenInstanceRef - Fullscreen 实例变量引用（传入对象，用于赋值）
+ * @param isFullscreenRef - 响应式全屏状态变量
+ * @param useDefaultElement - 是否使用默认元素（如整体页面用 document.documentElement）
  */
-const initFullscreen = () => {
-  // 初始化内容区域全屏实例
-  if (contentRef.value && !contentFullscreen) {
-    contentFullscreen = new Fullscreen(contentRef.value);
-    // 监听内容区域全屏状态变化，更新 isContentFullscreen
-    contentFullscreen.onChange(full => {
-      isContentFullscreen.value = full;
-    });
-    // 组件初始化时同步当前状态
-    isContentFullscreen.value = contentFullscreen.isFullscreen();
-  }
-
+function setupFullscreen(
+  elementRef: typeof contentRef | null,
+  fullscreenInstanceRef: typeof contentFullscreen,
+  isFullscreenRef: typeof isContentFullscreen,
+  useDefaultElement = false,
+) {
   // 初始化整体页面全屏实例，绑定 document.documentElement（整个页面根元素）
-  if (!pageFullscreen) {
-    pageFullscreen = new Fullscreen(document.documentElement);
+  const el = useDefaultElement ? document.documentElement : elementRef?.value;
+  if (el && !fullscreenInstanceRef.value) {
+    fullscreenInstanceRef.value = new Fullscreen(el, true, getRandomColor());
     // 监听整体页面全屏状态变化，更新 isPageFullscreen
-    pageFullscreen.onChange(full => {
-      isPageFullscreen.value = full;
+    fullscreenInstanceRef.value.onChange(full => {
+      isFullscreenRef.value = full;
     });
     // 组件初始化时同步当前状态
-    isPageFullscreen.value = pageFullscreen.isFullscreen();
+    isFullscreenRef.value = fullscreenInstanceRef.value.isFullscreen();
   }
+}
+
+const initFullscreen = () => {
+  setupFullscreen(contentRef, contentFullscreen, isContentFullscreen);
+  setupFullscreen(null, pageFullscreen, isPageFullscreen, true);
+  setupFullscreen(videoRef, videoFullscreen, isVideoFullscreen);
+  setupFullscreen(otherRef, otherFullscreen, isOtherFullscreen);
 };
 
 // 组件挂载时初始化全屏实例
@@ -54,60 +73,71 @@ onMounted(() => {
 
 // 组件卸载时销毁全屏实例，释放资源，避免内存泄漏
 onBeforeUnmount(() => {
-  contentFullscreen?.destroy();
-  contentFullscreen = null;
-  pageFullscreen?.destroy();
-  pageFullscreen = null;
+  contentFullscreen.value?.destroy();
+  contentFullscreen.value = null;
+  pageFullscreen.value?.destroy();
+  pageFullscreen.value = null;
+  videoFullscreen.value?.destroy();
+  videoFullscreen.value = null;
+  otherFullscreen.value?.destroy();
+  otherFullscreen.value = null;
 });
 
 /**
- * 进入内容区域全屏
- * 触发时设置加载状态，调用 Fullscreen 实例的 enter 方法
- * 捕获异常并打印错误，操作结束后取消加载状态
+ * 全屏操作类型枚举
  */
-const enterContentFullscreen = async () => {
-  if (!contentFullscreen) return;
-  isLoadingContent.value = true;
-  try {
-    await contentFullscreen.enter();
-  } catch (e) {
-    console.error('内容区域全屏失败', e);
-  } finally {
-    isLoadingContent.value = false;
-  }
-};
+enum FullscreenAction {
+  Enter = 'enter',
+  Exit = 'exit',
+}
 
 /**
- * 进入整体页面全屏
- * 逻辑同上，但操作整体页面的 Fullscreen 实例
+ * 通用执行全屏操作函数
+ * @param fullscreenRef - Fullscreen 实例的 ref
+ * @param loadingRef - 对应的 loading 状态 ref
+ * @param action - 全屏操作类型，使用 FullscreenAction 枚举，默认为 Enter
+ * @param errorMsg - 失败时打印的错误信息前缀，默认为 '全屏操作失败'
  */
-const enterPageFullscreen = async () => {
-  if (!pageFullscreen) return;
-  isLoadingPage.value = true;
+async function execFullscreenAction(
+  fullscreenRef: typeof contentFullscreen,
+  loadingRef: typeof isLoadingContent,
+  action: FullscreenAction = FullscreenAction.Enter,
+  errorMsg = '全屏操作失败'
+): Promise<void> {
+  if (!fullscreenRef.value) return;
+  loadingRef.value = true;
   try {
-    await pageFullscreen.enter();
+    if (action === FullscreenAction.Enter) {
+      await fullscreenRef.value.enter();
+    } else if (action === FullscreenAction.Exit) {
+      await fullscreenRef.value.exit();
+    }
   } catch (e) {
-    console.error('整体页面全屏失败', e);
+    console.error(errorMsg, e);
   } finally {
-    isLoadingPage.value = false;
+    loadingRef.value = false;
   }
-};
+}
 
-/**
- * 退出整体页面全屏
- * 仅整体页面全屏有退出按钮，内容区域全屏通过 ESC 等系统方式退出
- */
-const exitPageFullscreen = async () => {
-  if (!pageFullscreen) return;
-  isLoadingPage.value = true;
-  try {
-    await pageFullscreen.exit();
-  } catch (e) {
-    console.error('退出整体页面全屏失败', e);
-  } finally {
-    isLoadingPage.value = false;
-  }
-};
+// 进入内容区域全屏
+const enterContentFullscreen = () =>
+  execFullscreenAction(contentFullscreen, isLoadingContent, FullscreenAction.Enter, '内容区域全屏失败');
+
+// 进入整体页面全屏
+const enterPageFullscreen = () =>
+  execFullscreenAction(pageFullscreen, isLoadingPage, FullscreenAction.Enter, '整体页面全屏失败');
+// 退出整体页面全屏
+const exitPageFullscreen = () =>
+  execFullscreenAction(pageFullscreen, isLoadingPage, FullscreenAction.Exit, '退出整体页面全屏失败');
+
+// 进入视频全屏
+const enterVideoFullscreen = () =>
+  execFullscreenAction(videoFullscreen, isLoadingVideo, FullscreenAction.Enter, '视频全屏失败');
+
+// 进入其他元素全屏
+const enterOtherFullscreen = () =>
+  execFullscreenAction(otherFullscreen, isLoadingOther, FullscreenAction.Enter, '其他元素全屏失败');
+
 </script>
 
 <template>
@@ -149,9 +179,11 @@ const exitPageFullscreen = async () => {
 
       <n-divider />
 
-      <!-- 整体页面全屏控制按钮 -->
-      <p>整体页面全屏：</p>
-      <n-space>
+      <!-- 整体页面 -->
+      <p>
+        <strong>整体页面全屏状态：</strong> {{ isPageFullscreen ? '是' : '否' }}
+      </p>
+      <n-space style="margin-bottom: 24px;">
         <n-button
           type="primary"
           @click="enterPageFullscreen"
@@ -161,18 +193,62 @@ const exitPageFullscreen = async () => {
           整体页面进入全屏
         </n-button>
         <n-button
+          type="info"
           @click="exitPageFullscreen"
+          :loading="isLoadingPage"
           :disabled="isLoadingPage || !isPageFullscreen"
         >
-          整体页面退出全屏
+          退出整体页面全屏
         </n-button>
       </n-space>
 
-      <!-- 显示整体页面全屏状态 -->
-      <p style="margin-top: 16px;">
-        <strong>状态：</strong><br />
-        整体页面全屏：{{ isPageFullscreen ? '是' : '否' }}
+      <n-divider />
+
+      <!-- video 元素 -->
+      <div style="margin-bottom: 16px;">
+        <video
+          ref="videoRef"
+          controls
+          style="width: 25vw; height: 23vh; border: 1px solid #ddd;"
+          src="https://www.w3schools.com/html/mov_bbb.mp4"
+        ></video>
+        <p style="margin-top: 8px;">
+          <strong>视频全屏状态：</strong> {{ isVideoFullscreen ? '是' : '否' }}
+        </p>
+        <n-button
+          type="primary"
+          @click="enterVideoFullscreen"
+          :loading="isLoadingVideo"
+          :disabled="isLoadingVideo || isVideoFullscreen"
+        >
+          视频进入全屏
+        </n-button>
+      </div>
+
+      <n-divider />
+
+      <!-- 其他元素示例（图片） -->
+      <div
+        ref="otherRef"
+        style="
+          width: 25vw;
+          height: 23vh;
+          background: url('https://picsum.photos/400/300') no-repeat center/cover;
+          border: 1px solid #ddd;
+          margin-bottom: 8px;
+        "
+      ></div>
+      <p>
+        <strong>图片区域全屏状态：</strong> {{ isOtherFullscreen ? '是' : '否' }}
       </p>
+      <n-button
+        type="primary"
+        @click="enterOtherFullscreen"
+        :loading="isLoadingOther"
+        :disabled="isLoadingOther || isOtherFullscreen"
+      >
+        图片区域进入全屏
+      </n-button>
     </n-card>
   </naive-theme>
 </template>
