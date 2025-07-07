@@ -1,6 +1,6 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(40)
+useAddNumInOutlineLabel(39)
 
 import randInt from "./randInt.vue"
 import randFloat from "./randFloat.vue"

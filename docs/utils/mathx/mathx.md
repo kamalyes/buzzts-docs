@@ -1,6 +1,6 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(14)
+useAddNumInOutlineLabel(17)
 
 import arrayAllExist from "./arrayAllExist.vue"
 import arrayAllExistDeep from "./arrayAllExistDeep.vue"
@@ -15,12 +15,165 @@ import upperMoney from "./upperMoney.vue"
 import sumAverage from "./sumAverage.vue"
 import chunkArray from "./chunkArray.vue"
 import getPercentage from "./getPercentage.vue"
+import arrayToObject from "./arrayToObject.vue"
+import extractPropertyToArray from "./extractPropertyToArray.vue"
+import toMappedArray from "./toMappedArray.vue"
+import findValueByKey from "./findValueByKey.vue"
 
 </script>
 
 ::: tip 支持任意 `JavaScript` 环境或框架
 处理数据工具集
 :::
+
+### extractPropertyToArray
+
+提取给定对象数组中所有指定属性的值
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-extractPropertyToArray}
+
+<extractPropertyToArray />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/mathx/extractPropertyToArray.vue
+
+</details>
+
+#### <divider-param /> {#param-extractPropertyToArray}
+
+| 参数属性 | 说明                            | 类型                            | 默认值 |
+|----------|---------------------------------|---------------------------------|--------|
+| items    | 对象数组，每个对象应包含可选的指定属性 | `Array<T> \| null \| undefined` | 无     |
+| key      | 要提取的属性名，类型为对象的键   | `K`                             | 无     |
+| excludeNil| 是否排除 null 和 undefined，默认为 false | `boolean`                       | `false`|
+
+| 返回值   | 说明                                   |
+|----------|----------------------------------------|
+| `Array<T[K]>` | 返回所有指定属性值的数组，如果未提供有效的 `items`，则返回空数组 |
+
+#### <divider-desc /> {#desc-extractPropertyToArray}
+
+- 提取对象数组中所有指定属性的值，支持可选地排除 null 和 undefined 的项
+</div>
+
+### arrayToObject
+
+将字符串数组转换为对象数组，每个对象包含指定的属性，对应数组中的字符串可选地，排除值为 null 的项。
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-arrayToObject}
+
+<arrayToObject />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/mathx/arrayToObject.vue
+
+</details>
+
+#### <divider-param /> {#param-arrayToObject}
+
+| 参数属性 | 说明                             | 类型                            | 默认值 |
+|----------|----------------------------------|---------------------------------|--------|
+| stringArray | 字符串数组，若输入为 `null` 或 `undefined`，将返回空数组 | `T[] | null | undefined`      | 无     |
+| key      | 要设置的属性名，默认为 'key'    | `string`                        | `'key'`|
+| excludeNil| 是否排除 null 和 undefined，默认为 false | `boolean`                       | `false`|
+
+| 返回值   | 说明                                   |
+|----------|----------------------------------------|
+| `Array<{ [K in typeof key]: T }>` | 返回对象数组，每个对象包含指定的属性，对应数组中的字符串 |
+
+#### <divider-desc /> {#desc-arrayToObject}
+
+- 将字符串数组转换为对象数组，支持可选地排除 null 的项
+</div>
+
+### toMappedArray
+
+将对象数组映射为指定格式
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-toMappedArray}
+
+<toMappedArray />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/mathx/toMappedArray.vue
+
+</details>
+
+#### <divider-param /> {#param-toMappedArray}
+
+| 参数属性     | 说明                          | 类型                                                          | 默认值          |
+|--------------|-------------------------------|---------------------------------------------------------------|------------------|
+| items        | 输入的对象数组                | `Array<{ [key: string]: any }>` | `null` 或 `undefined` |
+| options      | 选项对象                      | `{ inKeyField?: string; inValueField?: string; outKeyField?: string; outValueField?: string; includeKey?: boolean; includeValue?: boolean; }` | {}               |
+| options.inKeyField | 输入的 key 字段名         | `string`                                                        | `key`            |
+| options.inValueField | 输入的 value 字段名     | `string`                                                        | `value`          |
+| options.outKeyField | 输出的 key 字段名       | `string`                                                        | `key`            |
+| options.outValueField | 输出的 value 字段名   | `string`                                                        | `value`          |
+| options.includeKey | 是否输出 key             | `boolean`                                                       | `true`             |
+| options.includeValue | 是否输出 value         | `boolean`                                                       | `true`            |
+| options.excludeNil| 是否排除 `null` 和 `undefined`，默认为 `false` | `boolean`                       | `false` |
+
+| 返回值                   | 说明                                   |
+|------------------------|----------------------------------------|
+| `Array<{ [outKeyField]: string; label?: string; [outValueField]?: string }>` | 返回映射后的数组 |
+
+#### <divider-desc /> {#desc-toMappedArray}
+
+- 将输入的对象数组转换为指定格式的数组。
+- 如果输入为 `null` 或 `undefined`，返回一个空数组。
+- 通过可选的 `options` 对象，用户可以自定义输入和输出字段名，以及是否包含 key 和 value 字段。
+
+</div>
+
+### findValueByKey
+
+根据键和值查找对象的对应值
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-findValueByKey}
+
+<findValueByKey />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/mathx/findValueByKey.vue
+
+</details>
+
+#### <divider-param /> {#param-findValueByKey}
+
+| 参数属性 | 说明       | 类型   | 默认值 |
+|----------|------------|--------|--------|
+| items    | 输入的对象数组 | `Array<{ [key: string]: any }>` | `null` |
+| key      | 要查找的键 | string | 无     |
+| value    | 要查找的值 | any   | 无     |
+| returnKey| 要返回的特定键 | string | undefined |
+
+| 返回值   | 说明                   |
+|----------|------------------------|
+| `any | null` | 返回匹配的值或 `null` |
+
+#### <divider-desc /> {#desc-findValueByKey}
+
+- 根据指定的键和值在输入的对象数组中查找匹配的值。
+- 如果输入为 `null` 或未找到匹配项，返回 `null`。
+- 如果提供了 `returnKey`，则返回匹配对象中指定键的值；否则返回整个匹配对象。
+
+</div>
 
 ## arrayAllExist
 

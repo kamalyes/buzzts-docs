@@ -158,7 +158,7 @@ const enterOtherFullscreen = () =>
         "
       >
         <p>这里是内容区域的主体内容，进入内容区域全屏时会放大到全屏。</p>
-        <p>退出内容区域全屏只能通过 ESC 键或系统手势操作。</p>
+        <p>退出内容区域全屏只能通过 ESC 键或系统手势操作(双击可退出)。</p>
         <p style="margin-top: 8px;">
           <strong>状态：</strong><br />
           内容区域全屏：{{ isContentFullscreen ? '是' : '否' }}<br />

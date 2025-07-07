@@ -52,8 +52,8 @@ npm install buzzts
 答：这种问题很常见，可以使用 `ES6` 提供的 `as` 关键字来为导入的函数重命名，如下：
 
 ```ts
-import { cloneDeep as _cloneDeep } from "buzzts";
-_cloneDeep();
+import { deepClone as _deepClone } from "buzzts";
+_deepClone(xxx);
 ```
 
 [反馈问题、新增需求](https://github.com/kamalyes/buzzts-docs/issues/new)
