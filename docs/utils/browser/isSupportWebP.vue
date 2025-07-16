@@ -36,6 +36,6 @@ export default {
       当前浏览器是否支持 WebP 图片格式：<strong>{{ result === null ? '检测中...' : (result ? '支持' : '不支持') }}</strong>
     </n-text>
 
-    <n-button @click="check" type="primary">重新检测</n-button>
+    <n-button  type="primary" @click="check">重新检测</n-button>
   </n-space>
 </template>

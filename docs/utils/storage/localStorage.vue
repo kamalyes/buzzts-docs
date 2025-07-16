@@ -151,7 +151,7 @@ const resultText = computed(() => {
 
       <n-space>
         <n-button type="success" @click="setItem">设置</n-button>
-        <n-button type="info" @click="getItem">读取</n-button>
+        <n-button type="primary" @click="getItem">读取</n-button>
         <n-button type="warning" @click="removeItem">删除</n-button>
         <n-button type="error" @click="clearStorage">清空全部</n-button>
       </n-space>

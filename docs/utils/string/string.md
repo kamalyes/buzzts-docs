@@ -1,6 +1,6 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(11)
+useAddNumInOutlineLabel(13)
 
 import capitalizeFirstLetter from "./capitalizeFirstLetter.vue"
 import camelToSnake from "./camelToSnake.vue"
@@ -13,6 +13,8 @@ import escapeHtml from "./escapeHtml.vue"
 import unescapeHtml from "./unescapeHtml.vue"
 import chunkString from "./chunkString.vue"
 import strReplace from "./strReplace.vue"
+import filterString from "./filterString.vue"
+import replaceCRLF from "./replaceCRLF.vue"
 
 </script>
 
@@ -419,5 +421,77 @@ HTML实体反转义
 - 当参数类型错误会抛出异常
 - chunkSize 必须为正整数
 - 支持最后一块长度小于 chunkSize
+
+</div>
+
+### replaceCRLF
+
+将字符串中的回车换行符替换为指定的替换字符串。
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-replaceCRLF}
+
+<replaceCRLF />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/string/replaceCRLF.vue
+
+</details>
+
+#### <divider-param /> {#param-replaceCRLF}
+
+| 参数属性    | 说明                | 类型   | 默认值  |
+|-------------|---------------------|--------|---------|
+| v           | 需要进行替换的字符串 | string | 无      |
+| replacement | 替换字符串          | string | `<br/>` |
+
+| 返回值   | 说明                              |
+|----------|-----------------------------------|
+| `string` | 替换后的字符串，其中所有的回车和换行符均被替换为指定的替换字符串 |
+
+#### <divider-desc /> {#desc-replaceCRLF}
+
+- 将输入字符串中的回车符（\r）和换行符（\n）替换为指定的替换字符串。
+- 如果输入非字符串或空字符串，则返回原字符串。
+
+</div>
+
+### filterString
+
+替换指定范围内的字符为指定的分隔符。
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-filterString}
+
+<filterString />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/string/filterString.vue
+
+</details>
+
+#### <divider-param /> {#param-filterString}
+
+| 参数属性 | 说明                | 类型   | 默认值 |
+|----------|---------------------|--------|--------|
+| val      | 需要进行过滤的字符串 | string | 无     |
+| sep      | 替换字符的分隔符    | string | `'*'`  |
+| start    | 替换开始的索引      | number | `0`    |
+| end      | 替换结束的索引      | number | 字符串的长度 |
+
+| 返回值   | 说明                              |
+|----------|-----------------------------------|
+| `string` | 返回过滤后的字符串，其中指定范围内的字符被替换为分隔符 |
+
+#### <divider-desc /> {#desc-filterString}
+
+- 将指定范围内的字符替换为给定的分隔符。
+- 如果输入非字符串或空字符串，则返回原字符串。
 
 </div>

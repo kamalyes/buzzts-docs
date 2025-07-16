@@ -270,9 +270,9 @@ function checkScrollStatus() {
       <n-button type="primary" @click="scrollToBottom" :disabled="!containerRef">滚动到底部</n-button>
       <n-button type="primary" @click="scrollToLeft" :disabled="!containerRefHorizontal">滚动到左侧</n-button>
       <n-button type="primary" @click="scrollToRight" :disabled="!containerRefHorizontal">滚动到右侧</n-button>
-      <n-button @click="pauseScroll" :disabled="!isScrolling">暂停滚动</n-button>
-      <n-button @click="resumeScroll" :disabled="isScrolling">恢复滚动</n-button>
-      <n-button @click="cancelScroll" :disabled="!isScrolling">取消滚动</n-button>
+      <n-button type="primary" @click="pauseScroll" :disabled="!isScrolling">暂停滚动</n-button>
+      <n-button type="primary" @click="resumeScroll" :disabled="isScrolling">恢复滚动</n-button>
+      <n-button type="primary" @click="cancelScroll" :disabled="!isScrolling">取消滚动</n-button>
     </n-space>
 
     <!-- 显示当前滚动状态和进度 -->

@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
       <code>{{ JSON.stringify(viewport.size()) }}</code>
     </n-text>
 
-    <n-button @click="refreshSize" type="primary" style="margin-bottom: 24px;">手动刷新尺寸</n-button>
+    <n-button type="primary" @click="refreshSize" style="margin-bottom: 24px;">手动刷新尺寸</n-button>
 
     <n-text>
       <strong>监听窗口尺寸变化事件：</strong>当窗口尺寸变化时，自动刷新视口尺寸并显示最新值。

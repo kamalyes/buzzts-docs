@@ -1,11 +1,12 @@
 <script setup>
 import { useAddNumInOutlineLabel } from '../../.vitepress/utils/createElement.ts'
-useAddNumInOutlineLabel(17)
+useAddNumInOutlineLabel(18)
 
 import arrayAllExist from "./arrayAllExist.vue"
 import arrayAllExistDeep from "./arrayAllExistDeep.vue"
 import arrayAnyExist from "./arrayAnyExist.vue"
 import arrayAnyExistDeep from "./arrayAnyExistDeep.vue"
+import filterObject from "./filterObject.vue"
 import getDistance from "./getDistance.vue"
 import getBetween from "./getBetween.vue"
 import deepClone from "./deepClone.vue"
@@ -92,6 +93,43 @@ import findValueByKey from "./findValueByKey.vue"
 #### <divider-desc /> {#desc-arrayToObject}
 
 - 将字符串数组转换为对象数组，支持可选地排除 null 的项
+</div>
+
+### filterObject
+
+根据操作类型选择或忽略对象的属性
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-filterObject}
+
+<filterObject />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/mathx/filterObject.vue
+
+</details>
+
+#### <divider-param /> {#param-filterObject}
+
+| 参数属性     | 说明                           | 类型                | 默认值 |
+|--------------|--------------------------------|---------------------|--------|
+| `object`     | 来源对象                      | `object`            | 无     |
+| `paths`      | 要被选中的或忽略的属性数组  | `string[]`          | 无     |
+| `action`     | 操作类型，选择或忽略        | `'pick' | 'omit'`   | 无     |
+
+| 返回值       | 说明                           |
+|--------------|--------------------------------|
+| `object`     | 返回新对象                   |
+
+#### <divider-desc /> {#desc-filterObject}
+
+- 根据操作类型选择或忽略对象的属性。
+- `action` 为 `'pick'` 时，返回包含 `paths` 中指定属性的新对象。
+- `action` 为 `'omit'` 时，返回不包含 `paths` 中指定属性的新对象。
+- 如果 `object` 为空，返回一个空对象。
 </div>
 
 ### toMappedArray
