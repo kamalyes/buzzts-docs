@@ -41,39 +41,6 @@ import isElementVisible from './isElementVisible.vue';
 处理dom工具集
 :::
 
-### getFromClipboard
-
-安全获取剪贴板文本内容
-
-<div class="buzzts-border">
-
-#### <divider-base /> {#base-getFromClipboard}
-
-<getFromClipboard />
-
-<details>
-<summary>查看代码</summary>
-
-<<< @/utils/dom/getFromClipboard.vue
-
-</details>
-
-#### <divider-param /> {#param-getFromClipboard}
-
-| 参数属性 | 说明                          | 类型     | 默认值 |
-|----------|-------------------------------|----------|--------|
-| 无       | 无                            | -        | -      |
-
-| 返回值   | 说明                                   |
-|----------|----------------------------------------|
-| `Promise<string>` | resolve时返回剪贴板文本，reject时返回错误 |
-
-#### <divider-desc /> {#desc-getFromClipboard}
-
-- 安全地读取剪贴板中的文本内容。
-
-</div>
-
 ### copyToClipboard
 
 安全写入文本到剪贴板
@@ -104,6 +71,39 @@ import isElementVisible from './isElementVisible.vue';
 #### <divider-desc /> {#desc-copyToClipboard}
 
 - 安全地将文本写入剪贴板。
+
+</div>
+
+### getFromClipboard
+
+安全获取剪贴板文本内容
+
+<div class="buzzts-border">
+
+#### <divider-base /> {#base-getFromClipboard}
+
+<getFromClipboard />
+
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/dom/getFromClipboard.vue
+
+</details>
+
+#### <divider-param /> {#param-getFromClipboard}
+
+| 参数属性 | 说明                          | 类型     | 默认值 |
+|----------|-------------------------------|----------|--------|
+| 无       | 无                            | -        | -      |
+
+| 返回值   | 说明                                   |
+|----------|----------------------------------------|
+| `Promise<string>` | resolve时返回剪贴板文本，reject时返回错误 |
+
+#### <divider-desc /> {#desc-getFromClipboard}
+
+- 安全地读取剪贴板中的文本内容。
 
 </div>
 
@@ -194,7 +194,7 @@ import isElementVisible from './isElementVisible.vue';
 
 | 参数属性 | 说明                          | 类型     | 默认值 |
 |----------|-------------------------------|----------|--------|
-| el       | 目标元素                      | `HTMLElement | null` | -      |
+| el       | 目标元素                      | `HTMLElement \| null` | -      |
 | styleObj | 样式键值对                    | `CSSStyleProps` | -      |
 
 | 返回值   | 说明                                   |
@@ -262,8 +262,8 @@ import isElementVisible from './isElementVisible.vue';
 
 | 参数属性 | 说明                          | 类型     | 默认值 |
 |----------|-------------------------------|----------|--------|
-| el       | 目标元素                      | `HTMLElement | null` | -      |
-| properties | 属性键值对                  | `Record<string, string | null>` | -      |
+| el       | 目标元素                      | `HTMLElement \| null` | -      |
+| properties | 属性键值对                  | `Record<string, string \| null>` | -      |
 
 | 返回值   | 说明                                   |
 |----------|----------------------------------------|
@@ -366,7 +366,7 @@ import isElementVisible from './isElementVisible.vue';
 | 参数属性 | 说明                          | 类型     | 默认值 |
 |----------|-------------------------------|----------|--------|
 | ele      | 目标元素                      | `HTMLElement` | -      |
-| className | 要添加的类名（单个或多个）  | `string | string[]` | -      |
+| className | 要添加的类名（单个或多个）  | `string \| string[]` | -      |
 
 | 返回值   | 说明                                   |
 |----------|----------------------------------------|
@@ -400,7 +400,7 @@ import isElementVisible from './isElementVisible.vue';
 | 参数属性 | 说明                          | 类型     | 默认值 |
 |----------|-------------------------------|----------|--------|
 | ele      | 目标元素                      | `HTMLElement` | -      |
-| className | 要移除的类名（单个或多个）  | `string | string[]` | -      |
+| className | 要移除的类名（单个或多个）  | `string \| string[]` | -      |
 
 | 返回值   | 说明                                   |
 |----------|----------------------------------------|

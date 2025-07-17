@@ -124,7 +124,7 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明     | 类型       | 默认值 |
 |----------|----------|------------|--------|
-| date     | 指定日期 | DateInput  | 无     |
+| date     | 指定日期 | `DateInput`  | 无     |
 
 | 返回值       | 说明                                 |
 |--------------|------------------------------------|
@@ -195,8 +195,8 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明     | 类型       | 默认值 |
 |----------|----------|------------|--------|
-| dateA    | 日期A    | DateInput  | 无     |
-| dateB    | 日期B    | DateInput  | 无     |
+| dateA    | 日期A    | `DateInput`  | 无     |
+| dateB    | 日期B    | `DateInput`  | 无     |
 
 | 返回值       | 说明                                 |
 |--------------|------------------------------------|
@@ -229,7 +229,7 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明     | 类型      | 默认值 |
 |----------|----------|-----------|--------|
-| date     | 指定日期 | DateInput | 无     |
+| date     | 指定日期 | `DateInput` | 无     |
 
 | 返回值       | 说明                                 |
 |--------------|------------------------------------|
@@ -269,7 +269,7 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性       | 说明               | 类型       | 默认值               |
 |----------------|--------------------|------------|----------------------|
-| date           | 指定日期           | Date       | 当前日期 new Date()  |
+| date           | 指定日期           | `Date`       | 当前日期 `new Date()`  |
 
 | 返回值   | 说明                           |
 |----------|--------------------------------|
@@ -302,7 +302,7 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性      | 说明               | 类型       | 默认值            |
 |---------------|--------------------|------------|-------------------|
-| date          | 需要转换的日期     | DateInput  | 当前日期          |
+| date          | 需要转换的日期     | `DateInput`  | 当前日期          |
 
 | 返回值       | 说明                       |
 |--------------|----------------------------|
@@ -335,7 +335,7 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性      | 说明               | 类型               |
 |---------------|--------------------|--------------------|
-| timestamp     | 时间戳（秒或毫秒） | number | string |
+| timestamp     | 时间戳（秒或毫秒） | `number \| string` |
 
 | 返回值       | 说明                       |
 |--------------|----------------------------|
@@ -368,8 +368,8 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明               | 类型      | 默认值       |
 |----------|--------------------|-----------|--------------|
-| format   | 格式字符串，如 'YYYY-MM-DD HH:mm:ss' | string | 无           |
-| date     | 需要格式化的日期   | DateInput | new Date()   |
+| format   | 格式字符串，如 `YYYY-MM-DD HH:mm:ss` | `string` | 无           |
+| date     | 需要格式化的日期   | `DateInput` | `new Date() `  |
 
 | 返回值   | 说明                     |
 |----------|--------------------------|
@@ -402,7 +402,7 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明           | 类型   | 默认值 |
 |----------|----------------|--------|--------|
-| seconds  | 持续时间，单位秒 | number | 无     |
+| seconds  | 持续时间，单位秒 | `number` | 无     |
 
 | 返回值   | 说明                     |
 |----------|--------------------------|
@@ -435,13 +435,13 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明       | 类型   | 默认值 |
 |----------|------------|--------|--------|
-| dateA    | 第一个日期 | DateInput | 无     |
-| dateB    | 第二个日期 | DateInput | 无     |
-| type     | 比较类型   | `before`,`after` | `before` | 
+| dateA    | 第一个日期 | `DateInput` | 无     |
+| dateB    | 第二个日期 | `DateInput` | 无     |
+| type     | 比较类型   | `before \| after` | `before` | 
 
 | 返回值   | 说明                   |
 |----------|------------------------|
-| `boolean|null`| 返回比较结果，true 或 false；如果任一日期无效，则返回 null |
+| `boolean\|null`| 返回比较结果，true 或 false；如果任一日期无效，则返回 null |
 
 #### <divider-desc /> {#desc-compareTwoDates}
 
@@ -470,13 +470,13 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明       | 类型   | 默认值 |
 |----------|------------|--------|--------|
-| target   | 目标日期   | DateInput | 无     |
-| start    | 起始日期   | DateInput | 无     |
-| end      | 结束日期   | DateInput | 无     |
+| target   | 目标日期   | `DateInput` | 无     |
+| start    | 起始日期   | `DateInput` | 无     |
+| end      | 结束日期   | `DateInput` | 无     |
 
 | 返回值   | 说明                   |
 |----------|------------------------|
-| `boolean|null` | 返回目标日期是否在区间内，true 或 false；如果任一日期无效，则返回 null |
+| `boolean\|null` | 返回目标日期是否在区间内，true 或 false；如果任一日期无效，则返回 null |
 
 #### <divider-desc /> {#desc-isBetween}
 
@@ -538,12 +538,12 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明       | 类型   | 默认值 |
 |----------|------------|--------|--------|
-| dateA    | 第一个日期 | DateInput | 无     |
-| dateB    | 第二个日期 | DateInput | 无     |
+| dateA    | 第一个日期 | `DateInput` | 无     |
+| dateB    | 第二个日期 | `DateInput` | 无     |
 
 | 返回值   | 说明                   |
 |----------|------------------------|
-| `boolean|null` | 是否为同一天，输入无效返回 null |
+| `boolean\|null` | 是否为同一天，输入无效返回 null |
 
 #### <divider-desc /> {#desc-isSameDay}
 
@@ -573,11 +573,11 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明       | 类型   | 默认值 |
 |----------|------------|--------|--------|
-| date     | 日期       | DateInput | 无     |
+| date     | 日期       | `DateInput` | 无     |
 
 | 返回值   | 说明                   |
 |----------|------------------------|
-| `boolean|null` | 是否为周末，输入无效返回 null |
+| `boolean\|null` | 是否为周末，输入无效返回 null |
 
 #### <divider-desc /> {#desc-isWeekend}
 
@@ -607,7 +607,7 @@ import getBoundaryOfDay from "./getBoundaryOfDay.vue"
 
 | 参数属性 | 说明       | 类型 | 默认值 |
 |----------|------------|------|--------|
-| date     | 需要判断的对象 | any  | 无     |
+| date     | 需要判断的对象 | `any`  | 无     |
 
 | 返回值   | 说明                   |
 |----------|------------------------|

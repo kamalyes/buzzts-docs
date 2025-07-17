@@ -35,9 +35,9 @@ import viewport from "./viewport.vue"
 
 | 参数属性 | 说明                                 | 类型        | 默认值        |
 | -------- | ------------------------------------ | ----------- | ------------- |
-| element  | 需要进入全屏的元素，默认是 body 元素 | HTMLElement | document.body |
-| enableDblClickExit | 是否启用双击退出全屏功能             | boolean     | true          |
-| fakeFullscreenBackgroundColor | 伪全屏时元素的背景颜色    | string     | 默认透明    |
+| element  | 需要进入全屏的元素，默认是 body 元素 | `HTMLElement` | `document.body` |
+| enableDblClickExit | 是否启用双击退出全屏功能             | `boolean`     | `true`          |
+| fakeFullscreenBackgroundColor | 伪全屏时元素的背景颜色    | `string`     | 默认透明    |
 
 | 返回值  | 说明                                                        |
 | ------- | ----------------------------------------------------------- |
@@ -82,7 +82,7 @@ import viewport from "./viewport.vue"
 
 | 参数属性 | 说明                 | 类型                         | 默认值          |
 |----------|----------------------|------------------------------|-----------------|
-| container| 滚动容器，HTMLElement 或 window | HTMLElement \| Window      | window          |
+| container| 滚动容器 | `HTMLElement \| window`      | `window`          |
 
 | 返回值   | 说明                   |
 |----------|------------------------|
@@ -164,11 +164,11 @@ if (scroller.isScrolling()) {
 
 | 参数属性      | 说明                                   | 类型                    | 默认值                        |
 |---------------|--------------------------------------|-------------------------|-------------------------------|
-| url           | 目标链接地址                         | string                  | 无                            |
-| tagType       | 打开方式，默认新标签页。可选值见 `TagOpener.OpenType` | number                  | `TagOpener.OpenType.NEW_TAB`  |
-| popupOptions  | 弹窗参数配置，仅 `POPUP` 方式生效    | {@link PopupOptions}     | 默认弹窗参数配置              |
-| callbacks     | 打开页面相关回调函数                  | {@link OpenCallbacks}    | 无                            |
-| embedContainer| 内嵌打开时的容器元素，仅 `EMBEDDED` 方式生效 | HTMLElement             | 无                            |
+| url           | 目标链接地址                         | `string`                  | 无                            |
+| tagType       | 打开方式，默认新标签页。可选值见 `TagOpener.OpenType \| number`                  | `TagOpener.OpenType.NEW_TAB`  |
+| popupOptions  | 弹窗参数配置，仅 `POPUP` 方式生效    | `{@link PopupOptions}`     | 默认弹窗参数配置              |
+| callbacks     | 打开页面相关回调函数                  | `{@link PopupOptions}`    | 无                            |
+| embedContainer| 内嵌打开时的容器元素，仅 `EMBEDDED` 方式生效 | `HTMLElement`             | 无                            |
 
 | 返回值 | 说明                         |
 |--------|------------------------------|

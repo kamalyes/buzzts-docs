@@ -11,7 +11,7 @@
         <n-space wrap>
           <h2></h2>
           <n-button type="primary" @click="copyText">复制文本</n-button>
-          <n-button type="info" @click="getClipboardText">点击我获取剪贴板内容</n-button>
+          <n-button type="info" @click="getClipboardText">点击我测试是否获取到剪贴文本</n-button>
         </n-space>
         <n-gradient-text type="info"> {{ clipboardText }} </n-gradient-text>
       </n-space>

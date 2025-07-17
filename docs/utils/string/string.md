@@ -43,7 +43,7 @@ import replaceCRLF from "./replaceCRLF.vue"
 
 | 参数属性 | 说明     | 类型   | 默认值 |
 |----------|----------|--------|--------|
-| input    | 输入字符串 | string | 无     |
+| input    | 输入字符串 | `string` | 无     |
 
 | 返回值   | 说明                 |
 |----------|----------------------|
@@ -77,9 +77,9 @@ import replaceCRLF from "./replaceCRLF.vue"
 
 | 参数属性           | 说明                     | 类型                    | 默认值  |
 |--------------------|--------------------------|-------------------------|---------|
-| camelCaseStr       | 驼峰命名字符串             | string                  | 无      |
-| options            | 配置选项                 | object                  | {}      |
-| options.keepUnderscorePrefix | 是否保留前导下划线 | boolean                 | false   |
+| camelCaseStr       | 驼峰命名字符串             | `string`                  | 无      |
+| options            | 配置选项                 | `object`                  | `{}`      |
+| options.keepUnderscorePrefix | 是否保留前导下划线 | `boolean`                 | `false`   |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -114,9 +114,9 @@ import replaceCRLF from "./replaceCRLF.vue"
 
 | 参数属性           | 说明                 | 类型                    | 默认值  |
 |--------------------|----------------------|-------------------------|---------|
-| snakeCaseStr       | 蛇形命名字符串         | string                  | 无      |
-| options            | 配置选项             | object                  | {}      |
-| options.pascalCase | 是否转换为帕斯卡命名   | boolean                 | false   |
+| snakeCaseStr       | 蛇形命名字符串         | `string`                  | 无      |
+| options            | 配置选项              | `object`                   | `{}`      |
+| options.pascalCase | 是否转换为帕斯卡命名   | `object`                  | `false`   |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -150,9 +150,9 @@ import replaceCRLF from "./replaceCRLF.vue"
 
 | 参数属性           | 说明                 | 类型                    | 默认值  |
 |--------------------|----------------------|-------------------------|---------|
-| str                | 输入字符串            | string \| null          | 无      |
-| options            | 配置选项             | object                  | {}      |
-| options.preserveNull | 输入非字符串时是否返回原值 | boolean           | false   |
+| str                | 输入字符串            | `string \| null`          | 无      |
+| options            | 配置选项             | `object`                   | `{}`      |
+| options.preserveNull | 输入非字符串时是否返回原值 | `object`            | `false`   |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -187,9 +187,9 @@ import replaceCRLF from "./replaceCRLF.vue"
 
 | 参数属性           | 说明                 | 类型                    | 默认值  |
 |--------------------|----------------------|-------------------------|---------|
-| camelCaseStr       | 驼峰命名字符串         | string                  | 无      |
-| options            | 配置选项             | object                  | {}      |
-| options.capitalize | 是否首字母大写         | boolean                 | false   |
+| camelCaseStr       | 驼峰命名字符串         | `string`                  | 无      |
+| options            | 配置选项             | `object`                   | `{}`      |
+| options.capitalize | 是否首字母大写         | `object`                  | `false`   |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -223,10 +223,10 @@ import replaceCRLF from "./replaceCRLF.vue"
 
 | 参数属性           | 说明                 | 类型                    | 默认值  |
 |--------------------|----------------------|-------------------------|---------|
-| phoneNumber        | 手机号码（字符串或数字） | string \| number        | 无      |
-| options            | 配置选项             | object                  | {}      |
-| options.maskChar   | 替换字符             | string                  | '*'     |
-| options.maskLength | 替换长度             | number                  | 4       |
+| phoneNumber        | 手机号码（字符串或数字） | `string \| number`        | 无      |
+| options            | 配置选项             | `object`                   | `{}`      |
+| options.maskChar   | 替换字符             | `string`                  | `*`     |
+| options.maskLength | 替换长度             | `number`                  | `4`       |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -262,11 +262,11 @@ import replaceCRLF from "./replaceCRLF.vue"
 
 | 参数属性           | 说明                 | 类型                    | 默认值  |
 |--------------------|----------------------|-------------------------|---------|
-| text               | 原始文本             | string                  | 无      |
-| maxLength          | 最大长度             | number                  | 无      |
-| options            | 配置选项             | object                  | {}      |
-| options.ellipsis   | 省略符号             | string                  | '...'   |
-| options.keepWords  | 是否保持单词完整     | boolean                 | true    |
+| text               | 原始文本             | `string`                  | 无      |
+| maxLength          | 最大长度             | `number`                  | 无      |
+| options            | 配置选项             | `object`                   | `{}`      |
+| options.ellipsis   | 省略符号             | `string`                  | `...`   |
+| options.keepWords  | 是否保持单词完整     | `object`                  | `true`    |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -301,7 +301,7 @@ HTML特殊字符转义
 
 | 参数属性           | 说明                 | 类型                    | 默认值  |
 |--------------------|----------------------|-------------------------|---------|
-| htmlStr            | 包含HTML的字符串      | string                  | 无      |
+| htmlStr            | 包含HTML的字符串      | `string`                  | 无      |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -335,7 +335,7 @@ HTML实体反转义
 
 | 参数属性           | 说明                 | 类型                    | 默认值  |
 |--------------------|----------------------|-------------------------|---------|
-| escapedStr         | 转义后的字符串        | string                  | 无      |
+| escapedStr         | 转义后的字符串        | `string`                  | 无      |
 
 | 返回值   | 说明             |
 |----------|------------------|
@@ -369,10 +369,10 @@ HTML实体反转义
 
 | 参数属性    | 说明                                         | 类型     | 默认值 |
 |-------------|----------------------------------------------|----------|--------|
-| str         | 原始字符串，必须是字符串类型                   | string   | 无     |
-| start       | 开始替换位置，支持负数索引（负数表示从末尾计数）| number   | 无     |
-| end         | 结束替换位置，支持负数索引，包含该位置           | number   | 无     |
-| replacement | 替换字符串，必传，可多字符，空字符串表示删除     | string   | 无     |
+| str         | 原始字符串，必须是字符串类型                   | `string`   | 无     |
+| start       | 开始替换位置，支持负数索引（负数表示从末尾计数）| `number`   | 无     |
+| end         | 结束替换位置，支持负数索引，包含该位置           | `number`   | 无     |
+| replacement | 替换字符串，必传，可多字符，空字符串表示删除     | `string`   | 无     |
 
 | 返回值     | 说明             |
 |------------|------------------|
@@ -409,8 +409,8 @@ HTML实体反转义
 
 | 参数属性  | 说明               | 类型   | 默认值 |
 |-----------|--------------------|--------|--------|
-| str       | 要分割的字符串       | string | 无     |
-| chunkSize | 每个子字符串长度，必须大于0 | number | 无     |
+| str       | 要分割的字符串       | `string` | 无     |
+| chunkSize | 每个子字符串长度，必须大于0 | `number` | 无     |
 
 | 返回值     | 说明             |
 |------------|------------------|
@@ -445,8 +445,8 @@ HTML实体反转义
 
 | 参数属性    | 说明                | 类型   | 默认值  |
 |-------------|---------------------|--------|---------|
-| v           | 需要进行替换的字符串 | string | 无      |
-| replacement | 替换字符串          | string | `<br/>` |
+| v           | 需要进行替换的字符串 | `string` | 无      |
+| replacement | 替换字符串          | `string` | `<br/>` |
 
 | 返回值   | 说明                              |
 |----------|-----------------------------------|
@@ -480,10 +480,10 @@ HTML实体反转义
 
 | 参数属性 | 说明                | 类型   | 默认值 |
 |----------|---------------------|--------|--------|
-| val      | 需要进行过滤的字符串 | string | 无     |
-| sep      | 替换字符的分隔符    | string | `'*'`  |
-| start    | 替换开始的索引      | number | `0`    |
-| end      | 替换结束的索引      | number | 字符串的长度 |
+| val      | 需要进行过滤的字符串 | `string` | 无     |
+| sep      | 替换字符的分隔符    | `string` | `*`  |
+| start    | 替换开始的索引      | `number` | `0`    |
+| end      | 替换结束的索引      | `number` | 字符串的长度 |
 
 | 返回值   | 说明                              |
 |----------|-----------------------------------|

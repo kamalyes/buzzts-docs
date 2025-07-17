@@ -33,8 +33,8 @@ localStorage 操作演示组件，支持增删改查和清空。
 
 | 参数属性 | 说明       | 类型   | 默认值 |
 |----------|------------|--------|--------|
-| key      | 存储的键名 | string | 无     |
-| value    | 存储的值   | string | 无     |
+| key      | 存储的键名 | `string` | 无     |
+| value    | 存储的值   | `string` | 无     |
 
 | 返回值 | 说明       |
 |--------|------------|
@@ -42,7 +42,7 @@ localStorage 操作演示组件，支持增删改查和清空。
 
 #### <divider-desc /> {#desc-localStorage}
 
-- 使用 StorageWrapper 封装 localStorage。
+- 使用 `StorageWrapper` 封装 `localStorage`。
 - 支持自动序列化和反序列化。
 - 提供增删改查和清空操作。
 
@@ -71,8 +71,8 @@ sessionStorage 操作演示组件，支持增删改查和清空。
 
 | 参数属性 | 说明       | 类型   | 默认值 |
 |----------|------------|--------|--------|
-| key      | 存储的键名 | string | 无     |
-| value    | 存储的值   | string | 无     |
+| key      | 存储的键名 | `string` | 无     |
+| value    | 存储的值   | `string` | 无     |
 
 | 返回值 | 说明       |
 |--------|------------|
@@ -80,7 +80,7 @@ sessionStorage 操作演示组件，支持增删改查和清空。
 
 #### <divider-desc /> {#desc-sessionStorage}
 
-- 使用 StorageWrapper 封装 sessionStorage。
+- 使用 `StorageWrapper` 封装 `sessionStorage`。
 - 支持自动序列化和反序列化。
 - 提供增删改查和清空操作。
 
@@ -109,8 +109,8 @@ Cookie 操作演示组件，支持增删改查和清空。
 
 | 参数属性 | 说明       | 类型   | 默认值 |
 |----------|------------|--------|--------|
-| key      | 存储的键名 | string | 无     |
-| value    | 存储的值   | string | 无     |
+| key      | 存储的键名 | `string` | 无     |
+| value    | 存储的值   | `string` | 无     |
 
 | 返回值 | 说明       |
 |--------|------------|
@@ -118,8 +118,8 @@ Cookie 操作演示组件，支持增删改查和清空。
 
 #### <divider-desc /> {#desc-cookies}
 
-- 使用 CookieWrapper 封装 Cookie 操作。
-- 设置时支持 expires 和 path 选项（默认 1 天有效期，路径 /）。
+- 使用 `CookieWrapper` 封装 `Cookie` 操作。
+- 设置时支持 `expires` 和 `path` 选项（默认 1 天有效期，路径 /）。
 - 提供增删改查和清空操作。
 
 </div>
