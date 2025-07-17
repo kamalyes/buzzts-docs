@@ -43,7 +43,57 @@ npm install buzzts
 ```html [unpkg]
 <script src="//unpkg.com/buzzts"></script>
 ```
+:::
 
+::: code-group
+
+```js
+// 使用 fetch 动态引入 buzzts 库
+fetch('https://cdn.jsdelivr.net/npm/buzzts@latest')
+    .then(response => response.text())
+    .then(scriptText => {
+        const script = document.createElement('script');
+        script.textContent = scriptText;
+        document.head.appendChild(script);
+
+        // 确保 buzzts 已加载并且 randColorHEX 可用
+        if (typeof buzzts.randColorHEX === 'function') {
+            console.log('随机颜色:', buzzts.randColorHEX());
+        } else {
+            console.error('randColorHEX 函数未定义');
+        }
+    })
+    .catch(error => console.error('加载脚本失败:', error));
+```
+
+```html
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引入 buzzts 示例</title>
+</head>
+<body>
+    <h1>欢迎使用 buzzts</h1>
+
+    <!-- 引入 buzzts 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/buzzts@latest"></script>
+
+    <script>
+        // 等待文档加载完成
+        window.onload = function() {
+            // 确保 buzzts 已加载并且 randColorHEX 可用
+            if (typeof buzzts.randColorHEX === 'function') {
+                console.log('随机颜色:', buzzts.randColorHEX());
+            } else {
+                console.error('randColorHEX 函数未定义');
+            }
+        };
+    </script>
+</body>
+</html>
+```
 :::
 
 ### 🤔 常见问题、反馈
