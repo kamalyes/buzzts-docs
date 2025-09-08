@@ -14,11 +14,11 @@ jobs:
     steps:
       # 第一步：检出代码 📥
       - name: Checkout
-        uses: actions/checkout@v4            # ✅ 官方代码检出 action，拉取代码到 runner
+        uses: actions/checkout@v5            # ✅ 官方代码检出 action，拉取代码到 runner
 
       # 第二步：设置 Node.js 环境 ⚙️
       - name: Setup Node.js
-        uses: actions/setup-node@v4          # 🔧 设置 Node.js 版本
+        uses: actions/setup-node@v5          # 🔧 设置 Node.js 版本
         with:
           node-version: "18.x"                # 📌 使用 Node 18 版本
 
