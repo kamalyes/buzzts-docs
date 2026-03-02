@@ -14,11 +14,11 @@ jobs:
     steps:
       # 第一步：检出代码 📥
       - name: Checkout
-        uses: actions/checkout@v4            # ✅ 官方代码检出 action，拉取代码到 runner
+        uses: actions/checkout@v6            # ✅ 官方代码检出 action，拉取代码到 runner
 
       # 第二步：设置 Node.js 环境 ⚙️
       - name: Setup Node.js
-        uses: actions/setup-node@v4          # 🔧 设置 Node.js 版本
+        uses: actions/setup-node@v6          # 🔧 设置 Node.js 版本
         with:
           node-version: "18.x"                # 📌 使用 Node 18 版本
 
@@ -32,7 +32,7 @@ jobs:
 
       # 第五步：部署到 GitHub Pages 🌐
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v4.2.0
+        uses: crazy-max/ghaction-github-pages@v5.0.0
         with:
           repo: kamalyes/buzzts-docs         # 📂 仓库名
           target_branch: gh-pages            # 🎯 发布到 gh-pages 分支
